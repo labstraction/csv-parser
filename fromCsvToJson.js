@@ -131,22 +131,42 @@ function writeJsonToFile(filePath, content){
     fs.writeFileSync(filePath, content)
 }
 
+function getOriginPath() {
+    const firstArg = process.argv[2]
+    const secondArg = process.argv[3]
+
+    if (!firstArg) {
+        console.log('per fare funzionare la funzione devi inserire un arg per origine e destinazione')
+        process.exit(1)
+    }
+
+    if (!secondArg) {
+        console.log('manca la destinazione dove salvare il file ')
+        process.exit(1)
+    }
+    return firstArg
+}
+
+function getDestinationPath(){
+    return process.argv[3]
+}
 
 function main(){
 
-    // const originPath = getOriginPath()
-    // const csvData = readCsvFromFile(originPath);
+    const originPath = getOriginPath()
 
-    const csvData = readCsvFromFile('./data/test2.csv');
+    const csvData = readCsvFromFile(originPath);
+
+    // const csvData = readCsvFromFile('./data/test2.csv');
 
     const json = fromCsvToJson(csvData);
 
     console.log(json);
 
-    // const destinationPath = getDestinationPath()
-    //writeJsonToFile(destinationPath, json);
+    const destinationPath = getDestinationPath()
+    writeJsonToFile(destinationPath, json);
 
-    writeJsonToFile('./output/test2.json', json);
+    // writeJsonToFile('./output/test2.json', json);
 }
 
 main()
