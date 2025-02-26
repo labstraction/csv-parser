@@ -159,7 +159,14 @@ function main(){
 
     // const csvData = readCsvFromFile('./data/test2.csv');
 
-    const json = fromCsvToJson(csvData);
+    //const json = fromCsvToJson(csvData);
+
+    // const json = JSON.stringify(csvData.split(/\r?\n/)
+    //                     .map(row => row.split(','))
+    //                     .reduce((a, c, i, array) => i > 0 ? 
+    //                         [...a, c.reduce((a, c, i) => {a[array[0][i]] = c; return a}, {})] : 
+    //                         a,[]))
+        
 
     console.log(json);
 
